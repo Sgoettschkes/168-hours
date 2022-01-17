@@ -13,7 +13,11 @@ config :onehundredsixtyeight_hours,
 # Configures the endpoint
 config :onehundredsixtyeight_hours, OnehundredsixtyeightHoursWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: OnehundredsixtyeightHoursWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [
+    view: OnehundredsixtyeightHoursWeb.ErrorView,
+    accepts: ~w(html json),
+    layout: false
+  ],
   pubsub_server: OnehundredsixtyeightHours.PubSub,
   live_view: [signing_salt: "RNKeKisB"]
 
@@ -24,7 +28,8 @@ config :onehundredsixtyeight_hours, OnehundredsixtyeightHoursWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :onehundredsixtyeight_hours, OnehundredsixtyeightHours.Mailer, adapter: Swoosh.Adapters.Local
+config :onehundredsixtyeight_hours, OnehundredsixtyeightHours.Mailer,
+  adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

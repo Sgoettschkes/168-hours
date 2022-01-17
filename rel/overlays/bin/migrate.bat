@@ -1,0 +1,1 @@
+call "%~dp0\onehundredsixtyeight_hours" eval OnehundredsixtyeightHours.Release.migrate

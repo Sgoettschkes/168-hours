@@ -36,25 +36,24 @@ COPY mix.exs mix.lock ./
 RUN mix deps.get --only $MIX_ENV
 RUN mkdir config
 
+# install npm dependencies
+RUN mkdir assets
+COPY assets/package.json ./assets/
+RUN npm install --prefix ./assets
+
 # copy compile-time config files before we compile dependencies
 # to ensure any relevant config change will trigger the dependencies
 # to be re-compiled.
 COPY config/config.exs config/${MIX_ENV}.exs config/
 RUN mix deps.compile
 
+COPY lib lib
 COPY priv priv
 
-# note: if your project uses a tool like https://purgecss.com/,
-# which customizes asset compilation based on what it finds in
-# your Elixir templates, you will need to move the asset compilation
-# step down so that `lib` is available.
 COPY assets assets
 
 # compile assets
 RUN mix assets.deploy
-
-# Compile the release
-COPY lib lib
 
 RUN mix compile
 

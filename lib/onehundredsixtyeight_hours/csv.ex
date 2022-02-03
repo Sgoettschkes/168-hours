@@ -17,7 +17,7 @@ defmodule OnehundredsixtyeightHours.Csv do
     file = File.open!("tmp/result.csv", [:write, :utf8])
     result |> CSV.encode() |> Enum.each(&IO.write(file, &1))
 
-    {:ok}
+    result
   end
 
   defp pretty_print_time(minutes) when minutes < 60, do: "#{minutes}m"

@@ -51,12 +51,10 @@
             <p class="mt-2 mb-4 text-gray-600">
               Export your timesheet as csv and upload it here
             </p>
-            <label
-              class="block mb-2 text-xs font-bold text-gray-700 uppercase"
-              for="message">
-              CSV File
-            </label>
-            <input type="file" name="filename" class="w-full px-3 py-3 text-sm text-gray-700 placeholder-gray-400 bg-white border-0 rounded shadow focus:outline-none focus:ring">
+            <form id="upload-form" phx-submit="save" phx-change="validate">
+              <%= live_file_input @uploads.timesheet, class: "w-full px-3 py-3 text-sm text-gray-700 placeholder-gray-400 bg-white border-0 rounded shadow focus:outline-none focus:ring" %>
+              <button type="submit">Upload</button>
+            </form>
           </div>
         </div>
       </div>
@@ -83,34 +81,36 @@
         points="2560 0 2560 100 0 100"></polygon>
     </svg>
   </div>
-  <div class="container px-4 mx-auto">
-    <div class="flex flex-wrap items-center">
-      <div class="block w-full">
-        <table class="items-center w-full bg-transparent border-collapse">
-          <thead>
-            <tr>
-              <th class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid bg-blueGray-50 text-blueGray-500 border-blueGray-100 whitespace-nowrap">
-                Task
-              </th>
-              <th class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid bg-blueGray-50 text-blueGray-500 border-blueGray-100 whitespace-nowrap">
-                Time
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= for [task, time] <- @data do %>
+  <%= if length(@data) > 0 do %>
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap items-center">
+        <div class="block w-full">
+          <table class="items-center w-full bg-transparent border-collapse">
+            <thead>
               <tr>
-                <th class="p-4 px-6 text-xs text-left align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
-                  <%= task %>
+                <th class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid bg-blueGray-50 text-blueGray-500 border-blueGray-100 whitespace-nowrap">
+                  Task
                 </th>
-                <td class="p-4 px-6 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
-                  <%= time %>
-                </td>
+                <th class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid bg-blueGray-50 text-blueGray-500 border-blueGray-100 whitespace-nowrap">
+                  Time
+                </th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <%= for [task, time] <- @data do %>
+                <tr>
+                  <th class="p-4 px-6 text-xs text-left align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
+                    <%= task %>
+                  </th>
+                  <td class="p-4 px-6 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
+                    <%= time %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </section>

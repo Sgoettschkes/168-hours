@@ -17,7 +17,7 @@ defmodule OnehundredsixtyeightHoursWeb.Router do
   scope "/", OnehundredsixtyeightHoursWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", Page.IndexLive
   end
 
   # Other scopes may use custom stacks.

@@ -1,5 +1,3 @@
-# fly.toml file generated for 168-hours on 2022-01-17T21:16:14+01:00
-
 app = "168-hours"
 
 kill_signal = "SIGTERM"

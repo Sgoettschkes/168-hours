@@ -8,7 +8,7 @@ import Config
 config :onehundredsixtyeight_hours, OnehundredsixtyeightHours.Repo,
   username: "postgres",
   password: "postgres",
-  database: "onehundredsixtyeight_hours_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "onehundredsixtyeight_hours_dev#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10

@@ -1,5 +1,7 @@
 defmodule OnehundredsixtyeightHours.Csv do
-  def run() do
+  @moduledoc false
+
+  def run do
     result =
       File.stream!("tmp/data.csv")
       |> parse()

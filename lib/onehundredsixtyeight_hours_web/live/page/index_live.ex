@@ -1,4 +1,6 @@
 defmodule OnehundredsixtyeightHoursWeb.Page.IndexLive do
+  @moduledoc false
+
   use Phoenix.LiveView
 
   def render(assigns) do

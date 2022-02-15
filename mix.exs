@@ -56,7 +56,7 @@ defmodule OnehundredsixtyeightHours.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:csv, "~> 2.4"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -72,7 +72,7 @@ defmodule OnehundredsixtyeightHours.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "test.once": ["ecto.reset", "test"],
-      ci: ["format --check-formatted", "credo", "dialyzer", "ecto.reset", "test"],
+      ci: ["format --check-formatted", "credo", "dialyzer --format short", "ecto.reset", "test"],
       "assets.deploy": [
         "cmd --cd assets npm run deploy",
         "esbuild default --minify",

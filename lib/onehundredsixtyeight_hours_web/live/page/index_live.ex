@@ -21,7 +21,8 @@ defmodule OnehundredsixtyeightHoursWeb.Page.IndexLive do
       consume_uploaded_entries(socket, :timesheet, fn %{path: path}, _entry ->
         {:ok,
          File.stream!(path)
-         |> OnehundredsixtyeightHours.Csv.parse()}
+         |> OnehundredsixtyeightHours.Csv.parse()
+         |> OnehundredsixtyeightHours.Csv.calculate_minutes()}
       end)
 
     data = List.first(uploaded_files)

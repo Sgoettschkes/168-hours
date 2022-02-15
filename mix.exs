@@ -11,7 +11,11 @@ defmodule OnehundredsixtyeightHours.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      preferred_cli_env: [ci: :test, "test.once": :test]
+      preferred_cli_env: [ci: :test, "test.once": :test],
+      dialyzer: [
+        plt_add_apps: [:ex_unit],
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+      ]
     ]
   end
 
@@ -51,7 +55,8 @@ defmodule OnehundredsixtyeightHours.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:csv, "~> 2.4"},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -67,7 +72,7 @@ defmodule OnehundredsixtyeightHours.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "test.once": ["ecto.reset", "test"],
-      ci: ["format --check-formatted", "credo", "ecto.reset", "test"],
+      ci: ["format --check-formatted", "credo", "dialyzer --format short", "ecto.reset", "test"],
       "assets.deploy": [
         "cmd --cd assets npm run deploy",
         "esbuild default --minify",

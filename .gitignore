@@ -3,6 +3,8 @@
 /cover/
 /deps/
 /doc/
+/priv/plts/*.plt
+/priv/plts/*.plt.hash
 /priv/static/assets/
 /priv/static/uploads/
 /priv/static/cache_manifest.json

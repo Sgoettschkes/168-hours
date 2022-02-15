@@ -13,7 +13,7 @@ defmodule OnehundredsixtyeightHours.MixProject do
       deps: deps(),
       preferred_cli_env: [ci: :test, "test.once": :test],
       dialyzer: [
-        plt_add_deps: :transitive,
+        plt_add_apps: [:ex_unit],
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
       ]
     ]
